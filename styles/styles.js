@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   screen: {
-    fontFamily: 'Montserrat'
+    fontFamily: 'Inter_500Medium'
   },
   generatorScreen: {
     flex: 1
