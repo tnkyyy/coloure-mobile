@@ -16,7 +16,7 @@ export default Card = (props) => {
         <Text
           style={[styles.cardTextSub, { color: textColorBasedOnBackground }]}
         >
-          {props.colorName || 'Waiting for color name...'}
+          {props.colorName}
         </Text>
       </View>
     </View>

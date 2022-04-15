@@ -34,7 +34,8 @@ export const styles = StyleSheet.create({
   actionContainer: {
     justifyContent: 'center',
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#d3d3d3'
   },
   actionButton: {
     height: 60,
@@ -42,6 +43,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 100,
-    backgroundColor: '#eeeeee'
+    backgroundColor: '#cad',
+    margin: 10
   }
 });
