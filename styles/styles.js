@@ -13,12 +13,11 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-start'
   },
   cardContainer: {
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
     height: 130,
     width: windowWidth - 15,
     margin: 5,
-    borderRadius: 25
+    borderRadius: 25,
+    flexDirection: 'row'
   },
   cardTextHeader: {
     fontFamily: 'Inter_500Medium',
@@ -29,7 +28,9 @@ export const styles = StyleSheet.create({
     fontSize: 15
   },
   cardTextContainer: {
-    padding: 20
+    padding: 20,
+    flexDirection: 'column',
+    justifyContent: 'flex-end'
   },
   actionContainer: {
     justifyContent: 'center',
@@ -43,7 +44,11 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 100,
-    backgroundColor: '#cad',
+    backgroundColor: '#ffffff0f',
     margin: 10
+  },
+  cardButtons: {
+    marginLeft: 'auto',
+    margin: 20
   }
 });
