@@ -30,5 +30,18 @@ export const styles = StyleSheet.create({
   },
   cardTextContainer: {
     padding: 20
+  },
+  actionContainer: {
+    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  actionButton: {
+    height: 60,
+    width: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 100,
+    backgroundColor: '#eeeeee'
   }
 });

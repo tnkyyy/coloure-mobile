@@ -44,6 +44,7 @@ export default GeneratorScreen = () => {
         colorName: 'TODO: ADD COLOR NAME'
       });
     }
+    setColors(newColorArr);
   };
 
   return (

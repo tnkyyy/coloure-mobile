@@ -17,6 +17,7 @@ export const randomColors = (n) => {
     const b = Math.floor(Math.random() * 256);
     result.push(rgbToHex(r, g, b));
   }
+  return result;
 };
 
 export const pickTextColor = (bgColor) => {
