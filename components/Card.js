@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native';
 import { styles } from '../styles/styles';
-import { pickTextColor } from '../scripts/colorAlgorithms';
+import { pickTextColor } from '../utilities/colorAlgorithms';
 
 export default Card = (props) => {
   const textColorBasedOnBackground = pickTextColor(props.color);
@@ -16,7 +16,7 @@ export default Card = (props) => {
         <Text
           style={[styles.cardTextSub, { color: textColorBasedOnBackground }]}
         >
-          {props.colorName}
+          {props.colorName || 'Waiting for color name...'}
         </Text>
       </View>
     </View>

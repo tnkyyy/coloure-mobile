@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { View, ScrollView } from 'react-native';
 import { styles } from '../styles/styles';
 import CardDisplayer from '../components/CardDisplayer';
-import { randomColors } from '../scripts/colorAlgorithms';
+import { randomColors } from '../utilities/colorAlgorithms';
 import CardUpdater from '../components/CardUpdater';
+import { ntc } from '../utilities/ntc/ntc';
 
 export default GeneratorScreen = () => {
   const [colors, setColors] = useState([
@@ -27,21 +28,21 @@ export default GeneratorScreen = () => {
 
   const [currentAlgorithm, setCurrentAlgorithm] = useState('Random');
 
-  const generateColorsHandler = () => {
+  const generateColorsHandler = async () => {
     const n = colors.length;
     switch (currentAlgorithm) {
       case 'Random':
-        replaceColors(randomColors(n));
+        await replaceColors(randomColors(n));
     }
   };
 
-  const replaceColors = (newColors) => {
+  const replaceColors = async (newColors) => {
     const newColorArr = [];
     for (let i = 0; i < newColors.length; i++) {
       newColorArr.push({
         color: newColors[i],
         id: i.toString(),
-        colorName: 'TODO: ADD COLOR NAME'
+        colorName: ntc.name(newColors[i])[1]
       });
     }
     setColors(newColorArr);
