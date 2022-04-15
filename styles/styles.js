@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
   cardContainer: {
     flexDirection: 'column',
     justifyContent: 'flex-end',
-    height: 200,
+    height: 130,
     width: windowWidth - 15,
     margin: 5,
     borderRadius: 25

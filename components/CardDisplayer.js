@@ -1,5 +1,3 @@
-import { View, Text, Dimensions } from 'react-native';
-import { styles } from '../styles/styles';
 import Card from './Card';
 
 export default CardDisplayer = (props) => {

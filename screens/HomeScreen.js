@@ -26,8 +26,7 @@ export default HomeScreen = () => {
           return <Ionicons name={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: 'tomato',
-        tabBarInactiveTintColor: 'gray',
-        headerShown: false
+        tabBarInactiveTintColor: 'gray'
       })}
     >
       <Tab.Screen name="Generator" component={GeneratorScreen} />
