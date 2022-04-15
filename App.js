@@ -1,5 +1,5 @@
 import { NavigationContainer } from '@react-navigation/native';
-import HomeScreen from './screens/HomeScreen/HomeScreen';
+import HomeScreen from './screens/HomeScreen';
 import { useFonts, Inter_500Medium } from '@expo-google-fonts/inter';
 import AppLoading from 'expo-app-loading';
 
