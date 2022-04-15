@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#d3d3d3'
+    backgroundColor: '#444444'
   },
   actionButton: {
     height: 60,
