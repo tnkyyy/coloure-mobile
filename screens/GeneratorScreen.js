@@ -61,13 +61,12 @@ export default GeneratorScreen = () => {
       }
     };
     let colorsJSON;
-    if (oldSchemes == {}) {
+    if (oldSchemes == '{}') {
       colorsJSON = JSON.stringify([colorsObject]);
     } else {
-      oldSchemes = JSON.parse(oldSchemes);
+      let oldSchemes = JSON.parse(oldSchemes);
       colorsJSON = JSON.stringify([...oldSchemes, colorsObject]);
     }
-    console.log(colorsJSON);
     await storeData('schemes', colorsJSON);
     await storeData('currentID', nextIDString);
   };
