@@ -6,6 +6,10 @@ import ActionButton from './ActionButton';
 export default Card = (props) => {
   const textColorBasedOnBackground = pickTextColor(props.color);
 
+  const removeCard = () => {
+    props.removeCallback(props.id);
+  };
+
   return (
     <View style={[styles.cardContainer, { backgroundColor: props.color }]}>
       <View style={styles.cardTextContainer}>
@@ -21,10 +25,7 @@ export default Card = (props) => {
         </Text>
       </View>
       <View style={styles.cardButtons}>
-        <ActionButton
-          iconName={'remove-outline'}
-          actionCallback={props.removeCallback}
-        />
+        <ActionButton iconName={'remove-outline'} actionCallback={removeCard} />
       </View>
     </View>
   );
