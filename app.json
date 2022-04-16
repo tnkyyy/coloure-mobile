@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "coloure-mobile",
+    "name": "Coloure",
     "slug": "coloure-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "dev.dyst.colouremobile"
     },
     "web": {
       "favicon": "./assets/favicon.png"
