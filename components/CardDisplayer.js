@@ -1,4 +1,4 @@
-import Card from './Card';
+import ColorCard from './ColorCard';
 
 export default CardDisplayer = (props) => {
   const colors = props.colors;
@@ -9,7 +9,7 @@ export default CardDisplayer = (props) => {
 
   return colors.map((data) => {
     return (
-      <Card
+      <ColorCard
         color={data.color}
         colorName={data.colorName}
         key={data.id}

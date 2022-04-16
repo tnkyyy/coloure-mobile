@@ -44,7 +44,7 @@ export default GeneratorScreen = () => {
       } catch (e) {
         console.log(e);
       }
-      console.log('Saved current ID and empty schemes');
+      console.log('Reset storage');
     };
 
     saveNumber().catch(console.error);
@@ -64,7 +64,7 @@ export default GeneratorScreen = () => {
     if (oldSchemes == '{}') {
       colorsJSON = JSON.stringify([colorsObject]);
     } else {
-      let oldSchemes = JSON.parse(oldSchemes);
+      oldSchemes = JSON.parse(oldSchemes);
       colorsJSON = JSON.stringify([...oldSchemes, colorsObject]);
     }
     await storeData('schemes', colorsJSON);
@@ -91,7 +91,7 @@ export default GeneratorScreen = () => {
     for (let i = 0; i < newColors.length; i++) {
       newColorArr.push({
         color: newColors[i],
-        id: i,
+        id: Math.floor(Math.random() * 10000),
         colorName: ntc.name(newColors[i])[1]
       });
     }
@@ -105,7 +105,7 @@ export default GeneratorScreen = () => {
       ...colors,
       {
         color: newColor[0],
-        id: colors.length,
+        id: Math.floor(Math.random() * 10000),
         colorName: ntc.name(newColor[0])[1]
       }
     ]);

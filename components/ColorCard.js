@@ -3,7 +3,7 @@ import { styles } from '../styles/styles';
 import { pickTextColor } from '../utilities/colorAlgorithms';
 import ActionButton from './ActionButton';
 
-export default Card = (props) => {
+export default ColorCard = (props) => {
   const textColorBasedOnBackground = pickTextColor(props.color);
 
   const removeCard = () => {
