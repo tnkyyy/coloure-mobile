@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { View, ScrollView } from 'react-native';
 import { styles } from '../styles/styles';
 import CardDisplayer from '../components/CardDisplayer';
 import { randomColors } from '../utilities/colorAlgorithms';
 import CardUpdater from '../components/CardUpdater';
 import { ntc } from '../utilities/ntc/ntc';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default GeneratorScreen = () => {
   const [colors, setColors] = useState([
@@ -25,6 +26,51 @@ export default GeneratorScreen = () => {
         'Use the dropdowns at the top to change the generation algorithm.'
     }
   ]);
+
+  const storeData = async (key, value) => {
+    try {
+      await AsyncStorage.setItem(key, value);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    const saveNumber = async () => {
+      try {
+        let emptyData = JSON.stringify({});
+        await storeData('currentID', '0');
+        await storeData('schemes', emptyData);
+      } catch (e) {
+        console.log(e);
+      }
+      console.log('Saved current ID and empty schemes');
+    };
+
+    saveNumber().catch(console.error);
+  }, []);
+
+  const saveColors = async () => {
+    let oldSchemes = await AsyncStorage.getItem('schemes');
+    let newID = await AsyncStorage.getItem('currentID');
+    let nextIDString = (parseInt(newID) + 1).toString();
+    const colorsObject = {
+      [nextIDString]: {
+        items: colors,
+        customName: 'TODO User scheme name'
+      }
+    };
+    let colorsJSON;
+    if (oldSchemes == {}) {
+      colorsJSON = JSON.stringify([colorsObject]);
+    } else {
+      oldSchemes = JSON.parse(oldSchemes);
+      colorsJSON = JSON.stringify([...oldSchemes, colorsObject]);
+    }
+    console.log(colorsJSON);
+    await storeData('schemes', colorsJSON);
+    await storeData('currentID', nextIDString);
+  };
 
   const [currentAlgorithm, setCurrentAlgorithm] = useState('Random');
 
@@ -77,7 +123,11 @@ export default GeneratorScreen = () => {
     <View style={[styles.screen, styles.generatorScreen]}>
       <ScrollView>
         <CardDisplayer colors={colors} onRemove={removeCardWithID} />
-        <CardUpdater onUpdate={updateColors} onAdd={addCard} />
+        <CardUpdater
+          onUpdate={updateColors}
+          onAdd={addCard}
+          onSave={saveColors}
+        />
       </ScrollView>
     </View>
   );

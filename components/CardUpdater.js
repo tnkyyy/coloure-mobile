@@ -7,6 +7,7 @@ export default CardUpdater = (props) => {
     <View style={[styles.cardContainer, styles.actionContainer]}>
       <ActionButton iconName={'shuffle'} actionCallback={props.onUpdate} />
       <ActionButton iconName={'add'} actionCallback={props.onAdd} />
+      <ActionButton iconName={'save'} actionCallback={props.onSave} />
     </View>
   );
 };

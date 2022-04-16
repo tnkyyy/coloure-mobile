@@ -44,7 +44,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 100,
-    backgroundColor: '#ffffff0f',
+    backgroundColor: '#00000011',
     margin: 10
   },
   cardButtons: {
