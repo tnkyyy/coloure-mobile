@@ -12,6 +12,13 @@ export const styles = StyleSheet.create({
   generatorScreen: {
     justifyContent: 'flex-start'
   },
+  schemeContainer: {
+    height: 130,
+    width: windowWidth - 15,
+    margin: 5,
+    borderRadius: 25,
+    flexDirection: 'row'
+  },
   cardContainer: {
     height: 130,
     width: windowWidth - 15,

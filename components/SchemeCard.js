@@ -3,10 +3,47 @@ import { styles } from '../styles/styles';
 import { pickTextColor } from '../utilities/colorAlgorithms';
 import ActionButton from './ActionButton';
 
-export default ColorCard = (props) => {
+export default SchemeCard = (props) => {
+  const numColors = props.scheme.items.length;
+  const averageWidth = (100 / numColors).toString();
   return (
-    <View>
-      <Text>Empty color card</Text>
+    <View
+      style={[
+        styles.schemeContainer,
+        { backgroundColor: '#ffffff', flexDirection: 'row' }
+      ]}
+    >
+      {props.scheme.items.map((item, n) => (
+        <View
+          style={{
+            backgroundColor: item.color,
+            height: '100%',
+            width: averageWidth + '%',
+            justifyContent: 'flex-end',
+            alignItems: 'center'
+          }}
+          key={n}
+        >
+          <Text
+            style={{
+              fontFamily: 'Inter_500Medium',
+              fontSize: 16,
+              marginBottom: 0
+            }}
+          >
+            {item.colorName}
+          </Text>
+          <Text
+            style={{
+              fontFamily: 'Inter_500Medium',
+              fontSize: 16,
+              marginBottom: 5
+            }}
+          >
+            {item.color}
+          </Text>
+        </View>
+      ))}
     </View>
   );
 };
