@@ -35,40 +35,21 @@ export default GeneratorScreen = () => {
     }
   };
 
-  useEffect(() => {
-    const saveNumber = async () => {
-      try {
-        let emptyData = JSON.stringify({});
-        await storeData('currentID', '0');
-        await storeData('schemes', emptyData);
-      } catch (e) {
-        console.log(e);
-      }
-      console.log('Reset storage');
-    };
-
-    saveNumber().catch(console.error);
-  }, []);
-
   const saveColors = async () => {
     let oldSchemes = await AsyncStorage.getItem('schemes');
-    let newID = await AsyncStorage.getItem('currentID');
-    let nextIDString = (parseInt(newID) + 1).toString();
     const colorsObject = {
-      [nextIDString]: {
-        items: colors,
-        customName: 'TODO User scheme name'
-      }
+      items: colors,
+      customName: 'TODO User scheme name',
+      id: Math.floor(Math.random * 10000)
     };
     let colorsJSON;
-    if (oldSchemes == '{}') {
+    if (oldSchemes == undefined) {
       colorsJSON = JSON.stringify([colorsObject]);
     } else {
       oldSchemes = JSON.parse(oldSchemes);
       colorsJSON = JSON.stringify([...oldSchemes, colorsObject]);
     }
     await storeData('schemes', colorsJSON);
-    await storeData('currentID', nextIDString);
   };
 
   const [currentAlgorithm, setCurrentAlgorithm] = useState('Random');
