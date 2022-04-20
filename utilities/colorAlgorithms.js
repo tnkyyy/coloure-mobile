@@ -92,6 +92,16 @@ export const pickTextColor = (bgColor) => {
   return r * 0.299 + g * 0.587 + b * 0.114 > 186 ? '#101010' : '#d3d3d3';
 };
 
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
 // Random
 
 export const randomColors = (n) => {
@@ -105,9 +115,20 @@ export const randomColors = (n) => {
   return result;
 };
 
+export const moderateRandomColors = (n) => {
+  let result = [];
+  for (let i = 0; i < n; i++) {
+    const r = getRandomInt(64, 192);
+    const g = getRandomInt(64, 192);
+    const b = getRandomInt(64, 192);
+    result.push(rgbToHex(r, g, b));
+  }
+  return result;
+};
+
 // Shades
 
-export const shadeColors = (n, basis = randomColors(1)) => {
+export const shadeColors = (n, basis = moderateRandomColors(1)) => {
   let result = [];
   basis = basis[0];
   const originalHue = hexToHSLObj(basis)['h'];
@@ -116,19 +137,20 @@ export const shadeColors = (n, basis = randomColors(1)) => {
   console.log(originalSat);
   const originalLig = hexToHSLObj(basis)['l'];
   console.log(originalLig);
-  const satFactor = Math.floor(Math.random() * 50);
-  const ligFactor = Math.floor(Math.random() * 50);
+  let satDistance, ligDistance;
+  satDistance = originalSat > 50 ? 100 - originalSat : originalSat;
+  ligDistance = originalLig > 50 ? 100 - originalLig : originalLig;
+  const satFactor = satDistance / n / getRandomArbitrary(1, 1.5);
+  const ligFactor = ligDistance / n / getRandomArbitrary(1, 1.5);
+  let acc = satFactor;
+  let accL = ligFactor;
   if (originalSat > 50) {
-    let acc = satFactor;
-    let accL = ligFactor;
     for (let i = 0; i < n; i++) {
       result.push(hslToHex(originalHue, originalSat - acc, originalLig - accL));
       acc += satFactor;
       accL += ligFactor;
     }
   } else {
-    let acc = satFactor;
-    let accL = ligFactor;
     for (let i = 0; i < n; i++) {
       result.push(hslToHex(originalHue, originalSat + acc, originalLig + accL));
       acc += satFactor;
