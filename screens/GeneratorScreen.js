@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { View, ScrollView } from 'react-native';
 import { styles } from '../styles/styles';
 import CardDisplayer from '../components/CardDisplayer';
-import { randomColors } from '../utilities/colorAlgorithms';
+import { randomColors, shadeColors } from '../utilities/colorAlgorithms';
 import CardUpdater from '../components/CardUpdater';
 import { ntc } from '../utilities/ntc/ntc';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -57,7 +57,7 @@ export default GeneratorScreen = () => {
   const generateColorsHandler = () => {
     switch (currentAlgorithm) {
       case 'Random':
-        return randomColors;
+        return shadeColors;
     }
   };
 
