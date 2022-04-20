@@ -2,10 +2,15 @@ import { useEffect, useState } from 'react';
 import { View, ScrollView } from 'react-native';
 import { styles } from '../styles/styles';
 import CardDisplayer from '../components/CardDisplayer';
-import { randomColors, shadeColors } from '../utilities/colorAlgorithms';
+import {
+  moderateRandomColors,
+  randomColors,
+  shadeColors
+} from '../utilities/colorAlgorithms';
 import CardUpdater from '../components/CardUpdater';
 import { ntc } from '../utilities/ntc/ntc';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import AlgorithmPicker from '../components/AlgorithmPicker';
 
 export default GeneratorScreen = () => {
   const [colors, setColors] = useState([
@@ -52,13 +57,21 @@ export default GeneratorScreen = () => {
     await storeData('schemes', colorsJSON);
   };
 
-  const [currentAlgorithm, setCurrentAlgorithm] = useState('Random');
+  const [currentAlgorithm, setCurrentAlgorithm] = useState('random');
 
   const generateColorsHandler = () => {
     switch (currentAlgorithm) {
-      case 'Random':
+      case 'random':
+        return randomColors;
+      case 'mod-random':
+        return moderateRandomColors;
+      case 'shades':
         return shadeColors;
     }
+  };
+
+  const setAlgorithm = (newAlgo) => {
+    setCurrentAlgorithm(newAlgo);
   };
 
   const updateColors = () => {
@@ -101,6 +114,7 @@ export default GeneratorScreen = () => {
 
   return (
     <View style={[styles.screen, styles.generatorScreen]}>
+      <AlgorithmPicker setAlgorithm={setAlgorithm} />
       <ScrollView>
         <CardDisplayer colors={colors} onRemove={removeCardWithID} />
         <CardUpdater
