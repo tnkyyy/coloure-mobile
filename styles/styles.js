@@ -16,8 +16,8 @@ export const styles = StyleSheet.create({
     height: 130,
     width: windowWidth - 15,
     margin: 5,
-    borderRadius: 25,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    borderRadius: 25
   },
   cardContainer: {
     height: 130,

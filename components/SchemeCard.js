@@ -7,43 +7,49 @@ export default SchemeCard = (props) => {
   const numColors = props.scheme.items.length;
   const averageWidth = (100 / numColors).toString();
   return (
-    <View
-      style={[
-        styles.schemeContainer,
-        { backgroundColor: '#ffffff', flexDirection: 'row' }
-      ]}
-    >
-      {props.scheme.items.map((item, n) => (
-        <View
-          style={{
-            backgroundColor: item.color,
-            height: '100%',
-            width: averageWidth + '%',
-            justifyContent: 'flex-end',
-            alignItems: 'center'
-          }}
-          key={n}
-        >
-          <Text
+    <View>
+      <View
+        style={[
+          styles.schemeContainer,
+          {
+            backgroundColor: '#ffffff',
+            flexDirection: 'row',
+            overflow: 'hidden'
+          }
+        ]}
+      >
+        {props.scheme.items.map((item, n) => (
+          <View
             style={{
-              fontFamily: 'Inter_500Medium',
-              fontSize: 16,
-              marginBottom: 0
+              backgroundColor: item.color,
+              height: '100%',
+              width: averageWidth + '%',
+              justifyContent: 'flex-end',
+              alignItems: 'center'
             }}
+            key={n}
           >
-            {item.colorName}
-          </Text>
-          <Text
-            style={{
-              fontFamily: 'Inter_500Medium',
-              fontSize: 16,
-              marginBottom: 5
-            }}
-          >
-            {item.color}
-          </Text>
-        </View>
-      ))}
+            <Text
+              style={{
+                fontFamily: 'Inter_500Medium',
+                fontSize: 16,
+                marginBottom: 0
+              }}
+            >
+              {item.colorName}
+            </Text>
+            <Text
+              style={{
+                fontFamily: 'Inter_500Medium',
+                fontSize: 16,
+                marginBottom: 5
+              }}
+            >
+              {item.color}
+            </Text>
+          </View>
+        ))}
+      </View>
     </View>
   );
 };
