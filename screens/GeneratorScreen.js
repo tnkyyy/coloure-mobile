@@ -114,7 +114,10 @@ export default GeneratorScreen = () => {
 
   return (
     <View style={[styles.screen, styles.generatorScreen]}>
-      <AlgorithmPicker setAlgorithm={setAlgorithm} />
+      <AlgorithmPicker
+        setAlgorithm={setAlgorithm}
+        selectedAlgo={currentAlgorithm}
+      />
       <ScrollView>
         <CardDisplayer colors={colors} onRemove={removeCardWithID} />
         <CardUpdater
