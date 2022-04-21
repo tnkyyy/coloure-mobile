@@ -4,6 +4,7 @@ import { styles } from '../styles/styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SchemesDisplayer } from '../components/SchemesDisplayer';
 import ActionButton from '../components/ActionButton';
+import EmptySchemesPlaceholder from '../components/EmptySchemesPlaceholder';
 
 export default GeneratorScreen = ({ navigation }) => {
   const [schemes, setSchemes] = useState(null);
@@ -30,13 +31,30 @@ export default GeneratorScreen = ({ navigation }) => {
     loadSavedData().catch(console.error);
   };
 
+  const removeSchemeWithIDFromStorage = async (id) => {
+    let schemesObject = JSON.parse(schemes);
+
+    let newSchemes = schemesObject.filter((item) => item.id !== id);
+
+    if (newSchemes[0] == undefined) {
+      setSchemes(null);
+      await AsyncStorage.removeItem('schemes');
+    } else {
+      setSchemes(JSON.stringify(newSchemes));
+      await AsyncStorage.setItem('schemes', JSON.stringify(newSchemes));
+    }
+  };
+
   return (
     <View style={[styles.screen, styles.generatorScreen]}>
       <ScrollView>
         {schemes == null ? (
-          <Text>Data is null</Text>
+          <EmptySchemesPlaceholder />
         ) : (
-          <SchemesDisplayer schemes={schemes} />
+          <SchemesDisplayer
+            schemes={schemes}
+            removeSchemeID={removeSchemeWithIDFromStorage}
+          />
         )}
         <View style={[styles.cardContainer, styles.actionContainer]}>
           <ActionButton

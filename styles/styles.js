@@ -5,6 +5,7 @@ const windowWidth = Dimensions.get('window').width;
 export const styles = StyleSheet.create({
   screen: {
     fontFamily: 'Inter_500Medium',
+    marginTop: 6,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'

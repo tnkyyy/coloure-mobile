@@ -1,4 +1,5 @@
 import { View, Text } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { styles } from '../styles/styles';
 import { pickTextColor } from '../utilities/colorAlgorithms';
 import ActionButton from './ActionButton';
@@ -6,6 +7,11 @@ import ActionButton from './ActionButton';
 export default SchemeCard = (props) => {
   const numColors = props.scheme.items.length;
   const averageWidth = (100 / numColors).toString();
+
+  const removeThisScheme = () => {
+    console.log(props.scheme);
+  };
+
   return (
     <View>
       <View
@@ -50,6 +56,12 @@ export default SchemeCard = (props) => {
           </View>
         ))}
       </View>
+      <ActionButton
+        icon={'bin'}
+        actionCallback={() => {
+          props.removeSchemeID(props.scheme.id);
+        }}
+      />
     </View>
   );
 };

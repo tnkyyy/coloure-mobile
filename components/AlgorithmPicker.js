@@ -8,11 +8,17 @@ const windowWidth = Dimensions.get('window').width;
 export default AlgorithmPicker = (props) => {
   return (
     <View
-      style={{ backgroundColor: '#cccccc', width: windowWidth, height: 100 }}
+      style={{
+        backgroundColor: '#e7e7e7',
+        width: '75%',
+        padding: 10,
+        borderRadius: 50
+      }}
     >
       <Picker
         selectedValue={props.selectedAlgo}
         onValueChange={(itemValue, itemIndex) => props.setAlgorithm(itemValue)}
+        mode={'dropdown'}
       >
         <Picker.Item label="Random" value="random" />
         <Picker.Item label="Moderate Random" value="mod-random" />

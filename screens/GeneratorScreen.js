@@ -45,7 +45,7 @@ export default GeneratorScreen = () => {
     const colorsObject = {
       items: colors,
       customName: 'TODO User scheme name',
-      id: Math.floor(Math.random * 10000)
+      id: Math.floor(Math.random() * 10000)
     };
     let colorsJSON;
     if (oldSchemes == undefined) {
