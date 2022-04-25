@@ -14,7 +14,7 @@ export default SchemeCard = (props) => {
         style={{
           borderRadius: 25,
           backgroundColor: '#ffffff',
-          margin: 5
+          margin: 3
         }}
       >
         <View
@@ -26,37 +26,42 @@ export default SchemeCard = (props) => {
             }
           ]}
         >
-          {props.scheme.items.map((item, n) => (
-            <View
-              style={{
-                backgroundColor: item.color,
-                height: '100%',
-                width: averageWidth + '%',
-                justifyContent: 'flex-end',
-                alignItems: 'center'
-              }}
-              key={n}
-            >
-              <Text
+          {props.scheme.items.map((item, n) => {
+            const textColor = pickTextColor(item.color);
+            return (
+              <View
                 style={{
-                  fontFamily: 'Inter_500Medium',
-                  fontSize: 16,
-                  marginBottom: 0
+                  backgroundColor: item.color,
+                  height: '100%',
+                  width: averageWidth + '%',
+                  justifyContent: 'flex-end',
+                  alignItems: 'center'
                 }}
+                key={n}
               >
-                {item.colorName}
-              </Text>
-              <Text
-                style={{
-                  fontFamily: 'Inter_500Medium',
-                  fontSize: 16,
-                  marginBottom: 5
-                }}
-              >
-                {item.color}
-              </Text>
-            </View>
-          ))}
+                <Text
+                  style={{
+                    fontFamily: 'Inter_500Medium',
+                    fontSize: 16,
+                    marginBottom: 0,
+                    color: textColor
+                  }}
+                >
+                  {item.colorName}
+                </Text>
+                <Text
+                  style={{
+                    fontFamily: 'Inter_500Medium',
+                    fontSize: 16,
+                    marginBottom: 5,
+                    color: textColor
+                  }}
+                >
+                  {item.color}
+                </Text>
+              </View>
+            );
+          })}
         </View>
         <View style={{ flexDirection: 'row' }}>
           <ActionButton

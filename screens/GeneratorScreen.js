@@ -43,10 +43,11 @@ export default GeneratorScreen = () => {
 
   const saveColors = async () => {
     let oldSchemes = await AsyncStorage.getItem('schemes');
+    let newId = Math.floor(Math.random() * 10000);
     const colorsObject = {
       items: colors,
-      customName: 'TODO User scheme name',
-      id: Math.floor(Math.random() * 10000)
+      customName: `Saved scheme ${newId}`,
+      id: newId
     };
     let colorsJSON;
     if (oldSchemes == undefined) {
