@@ -3,7 +3,9 @@ import { View, ScrollView } from 'react-native';
 import { styles } from '../styles/styles';
 import CardDisplayer from '../components/CardDisplayer';
 import {
+  moderatePastelColors,
   moderateRandomColors,
+  pastelRandomColors,
   randomColors,
   shadeColors
 } from '../utilities/colorAlgorithms';
@@ -65,6 +67,8 @@ export default GeneratorScreen = () => {
         return randomColors;
       case 'mod-random':
         return moderateRandomColors;
+      case 'pas-random':
+        return pastelRandomColors;
       case 'shades':
         return shadeColors;
     }

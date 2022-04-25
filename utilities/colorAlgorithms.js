@@ -126,6 +126,17 @@ export const moderateRandomColors = (n) => {
   return result;
 };
 
+export const pastelRandomColors = (n) => {
+  let result = [];
+  for (let i = 0; i < n; i++) {
+    const r = getRandomInt(150, 220);
+    const g = getRandomInt(150, 220);
+    const b = getRandomInt(150, 220);
+    result.push(rgbToHex(r, g, b));
+  }
+  return result;
+};
+
 // Shades
 
 export const shadeColors = (n, basis = moderateRandomColors(1)) => {

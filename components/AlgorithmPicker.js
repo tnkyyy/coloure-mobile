@@ -22,6 +22,7 @@ export default AlgorithmPicker = (props) => {
       >
         <Picker.Item label="Random" value="random" />
         <Picker.Item label="Moderate Random" value="mod-random" />
+        <Picker.Item label="Pastel Random" value="pas-random" />
         <Picker.Item label="Shades" value="shades" />
       </Picker>
     </View>
