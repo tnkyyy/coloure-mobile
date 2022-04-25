@@ -3,7 +3,6 @@ import { View, ScrollView } from 'react-native';
 import { styles } from '../styles/styles';
 import CardDisplayer from '../components/CardDisplayer';
 import {
-  moderatePastelColors,
   moderateRandomColors,
   pastelRandomColors,
   randomColors,
