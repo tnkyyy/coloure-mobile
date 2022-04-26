@@ -1,6 +1,7 @@
 import { View, Text, Image } from 'react-native';
 import { styles } from '../styles/styles';
 import * as Linking from 'expo-linking';
+import Anchor from '../components/Anchor';
 
 export default GeneratorScreen = () => {
   return (
@@ -14,8 +15,10 @@ export default GeneratorScreen = () => {
         to enjoy using the app for whatever you need it for!
       </Text>
       <Text style={[styles.cardTextSub, { margin: 10, textAlign: 'center' }]}>
-        This app is still relatively new and will be maintained, adding more generation algorithms and features in the future.
+        This app is still relatively new and will be maintained, adding more
+        generation algorithms and features in the future.
       </Text>
+      <Anchor href={'https://dyst.dev'}>See my other projects here!</Anchor>
     </View>
   );
 };
