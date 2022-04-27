@@ -10,7 +10,8 @@ export default EmptySchemesPlaceholder = (props) => {
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: '#e7e7e7',
-          borderRadius: 25
+          borderRadius: 25,
+          padding: 10
         }
       ]}
     >

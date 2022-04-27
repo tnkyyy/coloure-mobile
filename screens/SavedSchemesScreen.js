@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
-import { View, ScrollView, Text } from 'react-native';
+import { View, ScrollView, Text, Modal } from 'react-native';
 import { styles } from '../styles/styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SchemesDisplayer } from '../components/SchemesDisplayer';
 import ActionButton from '../components/ActionButton';
 import EmptySchemesPlaceholder from '../components/EmptySchemesPlaceholder';
+import ConfirmModal from '../components/ConfirmModal';
 
 export default GeneratorScreen = ({ navigation }) => {
   const [schemes, setSchemes] = useState(null);
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
   const loadSavedData = async () => {
     const schemesNew = await AsyncStorage.getItem('schemes');
@@ -45,8 +47,18 @@ export default GeneratorScreen = ({ navigation }) => {
     }
   };
 
+  const showDeleteModal = () => {
+    setDeleteModalVisible(true)
+  }
+
   return (
     <View style={[styles.screen, styles.generatorScreen]}>
+      <ConfirmModal
+        actionName={'delete all saved schemes'}
+        actionCallback={clearStorage}
+        modalVisible={deleteModalVisible}
+        setModalVisible={setDeleteModalVisible}
+      />
       <ScrollView>
         {schemes == null ? (
           <EmptySchemesPlaceholder />
@@ -59,7 +71,7 @@ export default GeneratorScreen = ({ navigation }) => {
         <View style={[styles.cardContainer, styles.actionContainer]}>
           <ActionButton
             iconName={'trash-bin-outline'}
-            actionCallback={clearStorage}
+            actionCallback={showDeleteModal}
           />
         </View>
       </ScrollView>
