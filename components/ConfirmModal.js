@@ -18,23 +18,25 @@ export default ConfirmModal = (props) => {
             Are you sure you want to
             <Text style={{ fontWeight: 'bold' }}> {props.actionName}</Text>?
           </Text>
-          <Pressable
-            style={[styles.button, styles.buttonClose]}
-            onPress={() => {
-              props.actionCallback();
-              props.setModalVisible(!props.modalVisible);
-            }}
-          >
-            <Text style={styles.textStyle}>Confirm</Text>
-          </Pressable>
-          <Pressable
-            style={[styles.button, styles.buttonClose]}
-            onPress={() => {
-              props.setModalVisible(!props.modalVisible);
-            }}
-          >
-            <Text style={styles.textStyle}>Cancel</Text>
-          </Pressable>
+          <View style={{ flexDirection: 'row', padding: 10 }}>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => {
+                props.actionCallback();
+                props.setModalVisible(!props.modalVisible);
+              }}
+            >
+              <Text style={styles.textStyle}>Confirm</Text>
+            </Pressable>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => {
+                props.setModalVisible(!props.modalVisible);
+              }}
+            >
+              <Text style={styles.textStyle}>Cancel</Text>
+            </Pressable>
+          </View>
         </View>
       </View>
     </Modal>
@@ -66,7 +68,8 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 20,
     padding: 10,
-    elevation: 2
+    elevation: 2,
+    margin: 10
   },
   buttonOpen: {
     backgroundColor: '#F194FF'
