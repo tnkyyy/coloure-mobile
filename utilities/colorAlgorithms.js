@@ -115,6 +115,14 @@ export const randomColors = (n) => {
   return result;
 };
 
+const randomHexForComplementary = () => {
+  return hslToHex(
+    getRandomInt(0, 360),
+    getRandomInt(45, 55),
+    getRandomInt(45, 55)
+  );
+};
+
 export const moderateRandomColors = (n) => {
   let result = [];
   for (let i = 0; i < n; i++) {
@@ -172,8 +180,29 @@ export const shadeColors = (n, basis = moderateRandomColors(1)[0]) => {
 
 // Contrasting colours
 
-export const complementaryColours = (n, basis = randomColors(1)[0]) => {
+export const complementaryColours = (
+  n,
+  basis = randomHexForComplementary()
+) => {
   let result = [];
-	const hue = hexToHSLObj(basis)['h'];
-	
+  const hue = hexToHSLObj(basis)['h'];
+  const sat = hexToHSLObj(basis)['s'];
+  const lig = hexToHSLObj(basis)['l'];
+  if (hue < 180) {
+    const basis = 360 - hue;
+    const dist = basis / n - 1;
+    let acc = 0;
+    for (let i = 0; i < n; i++) {
+      result.push(hslToHex(hue + acc, sat, lig));
+      acc += dist;
+    }
+  } else {
+    const dist = hue / n - 1;
+    let acc = 0;
+    for (let i = 0; i < n; i++) {
+      result.push(hslToHex(hue + acc, sat, lig));
+      acc -= dist;
+    }
+  }
+  return result;
 };

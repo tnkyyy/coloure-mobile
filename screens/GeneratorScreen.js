@@ -3,6 +3,7 @@ import { View, ScrollView } from 'react-native';
 import { styles } from '../styles/styles';
 import CardDisplayer from '../components/CardDisplayer';
 import {
+  complementaryColours,
   moderateRandomColors,
   pastelRandomColors,
   randomColors,
@@ -71,6 +72,8 @@ export default GeneratorScreen = () => {
         return pastelRandomColors;
       case 'shades':
         return shadeColors;
+      case 'complementary':
+        return complementaryColours;
     }
   };
 
