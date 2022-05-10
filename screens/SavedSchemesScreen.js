@@ -6,6 +6,7 @@ import { SchemesDisplayer } from '../components/SchemesDisplayer';
 import ActionButton from '../components/ActionButton';
 import EmptySchemesPlaceholder from '../components/EmptySchemesPlaceholder';
 import ConfirmModal from '../components/ConfirmModal';
+import Toast from 'react-native-toast-message';
 
 export default GeneratorScreen = ({ navigation }) => {
   const [schemes, setSchemes] = useState(null);
@@ -48,8 +49,15 @@ export default GeneratorScreen = ({ navigation }) => {
   };
 
   const showDeleteModal = () => {
-    setDeleteModalVisible(true)
-  }
+    if (schemes == null) {
+      Toast.show({
+        type: 'error',
+        text1: 'No saved schemes to delete!'
+      });
+    } else {
+      setDeleteModalVisible(true);
+    }
+  };
 
   return (
     <View style={[styles.screen, styles.generatorScreen]}>

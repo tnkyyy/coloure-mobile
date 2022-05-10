@@ -139,9 +139,8 @@ export const pastelRandomColors = (n) => {
 
 // Shades
 
-export const shadeColors = (n, basis = moderateRandomColors(1)) => {
+export const shadeColors = (n, basis = moderateRandomColors(1)[0]) => {
   let result = [];
-  basis = basis[0];
   const originalHue = hexToHSLObj(basis)['h'];
   console.log(originalHue);
   const originalSat = hexToHSLObj(basis)['s'];
@@ -169,4 +168,12 @@ export const shadeColors = (n, basis = moderateRandomColors(1)) => {
     }
   }
   return result;
+};
+
+// Contrasting colours
+
+export const complementaryColours = (n, basis = randomColors(1)[0]) => {
+  let result = [];
+	const hue = hexToHSLObj(basis)['h'];
+	
 };
