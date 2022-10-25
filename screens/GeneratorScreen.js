@@ -14,8 +14,12 @@ import { ntc } from '../utilities/ntc/ntc';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AlgorithmPicker from '../components/AlgorithmPicker';
 import * as Sharing from 'expo-sharing';
+import ViewShot from 'react-native-view-shot';
+import { useRef } from 'react';
 
 export default GeneratorScreen = () => {
+  ref = useRef();
+
   const [colors, setColors] = useState([
     {
       color: '#ffffff',
@@ -120,9 +124,10 @@ export default GeneratorScreen = () => {
     setColors(newColors);
   };
 
-  const shareData = async () => {
-    // const msg = ['Look at this color scheme I made!'];
-    // const res = await Sharing.shareAsync();
+  const shareData = () => {
+    ref.current.capture().then((uri) => {
+      Sharing.shareAsync(uri);
+    });
   };
 
   return (
@@ -131,8 +136,14 @@ export default GeneratorScreen = () => {
         setAlgorithm={setAlgorithm}
         selectedAlgo={currentAlgorithm}
       />
+
       <ScrollView>
-        <CardDisplayer colors={colors} onRemove={removeCardWithID} />
+        <ViewShot
+          ref={ref}
+          options={{ fileName: 'coloure-scheme', format: 'jpg', quality: 0.9 }}
+        >
+          <CardDisplayer colors={colors} onRemove={removeCardWithID} />
+        </ViewShot>
         <CardUpdater
           onUpdate={updateColors}
           onAdd={addCard}

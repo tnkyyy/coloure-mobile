@@ -58,5 +58,8 @@ export const styles = StyleSheet.create({
   cardButtons: {
     marginLeft: 'auto',
     margin: 20
+  },
+  generatorScrollBG: {
+    backgroundColor: 'white'
   }
 });
