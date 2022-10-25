@@ -60,6 +60,6 @@ export const styles = StyleSheet.create({
     margin: 20
   },
   generatorScrollBG: {
-    backgroundColor: 'white'
+    backgroundColor: '#f2f2f2'
   }
 });

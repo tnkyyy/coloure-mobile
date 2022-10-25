@@ -126,7 +126,12 @@ export default GeneratorScreen = () => {
 
   const shareData = () => {
     ref.current.capture().then((uri) => {
-      Sharing.shareAsync(uri);
+      Sharing.shareAsync(uri).catch((err) => {
+        Toast.show({
+          type: 'error',
+          text1: 'Sharing failed. Do you have any colors?'
+        });
+      });
     });
   };
 
@@ -137,10 +142,10 @@ export default GeneratorScreen = () => {
         selectedAlgo={currentAlgorithm}
       />
 
-      <ScrollView>
+      <ScrollView style={styles.generatorScrollBG}>
         <ViewShot
           ref={ref}
-          options={{ fileName: 'coloure-scheme', format: 'jpg', quality: 0.9 }}
+          options={{ fileName: 'coloure-scheme', format: 'png', quality: 0.9 }}
         >
           <CardDisplayer colors={colors} onRemove={removeCardWithID} />
         </ViewShot>

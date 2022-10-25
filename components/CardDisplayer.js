@@ -1,3 +1,5 @@
+import { View } from 'react-native';
+import { styles } from '../styles/styles';
 import ColorCard from './ColorCard';
 
 export default CardDisplayer = (props) => {
@@ -7,15 +9,19 @@ export default CardDisplayer = (props) => {
     props.onRemove(id);
   };
 
-  return colors.map((data) => {
-    return (
-      <ColorCard
-        color={data.color}
-        colorName={data.colorName}
-        key={data.id}
-        id={data.id}
-        removeCallback={onRemove}
-      />
-    );
-  });
+  return (
+    <View style={styles.generatorScrollBG}>
+      {colors.map((data) => {
+        return (
+          <ColorCard
+            color={data.color}
+            colorName={data.colorName}
+            key={data.id}
+            id={data.id}
+            removeCallback={onRemove}
+          />
+        );
+      })}
+    </View>
+  );
 };
