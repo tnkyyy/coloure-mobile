@@ -44,7 +44,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#444444'
+    backgroundColor: '#888888'
   },
   actionButton: {
     height: 60,

@@ -8,6 +8,7 @@ export default CardUpdater = (props) => {
       <ActionButton iconName={'shuffle'} actionCallback={props.onUpdate} />
       <ActionButton iconName={'add'} actionCallback={props.onAdd} />
       <ActionButton iconName={'save'} actionCallback={props.onSave} />
+      <ActionButton iconName={'share'} actionCallback={props.onShare} />
     </View>
   );
 };

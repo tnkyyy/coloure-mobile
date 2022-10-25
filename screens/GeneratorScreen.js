@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { View, ScrollView } from 'react-native';
 import { styles } from '../styles/styles';
 import CardDisplayer from '../components/CardDisplayer';
@@ -13,6 +13,7 @@ import CardUpdater from '../components/CardUpdater';
 import { ntc } from '../utilities/ntc/ntc';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AlgorithmPicker from '../components/AlgorithmPicker';
+import * as Sharing from 'expo-sharing';
 
 export default GeneratorScreen = () => {
   const [colors, setColors] = useState([
@@ -119,6 +120,11 @@ export default GeneratorScreen = () => {
     setColors(newColors);
   };
 
+  const shareData = async () => {
+    // const msg = ['Look at this color scheme I made!'];
+    // const res = await Sharing.shareAsync();
+  };
+
   return (
     <View style={[styles.screen, styles.generatorScreen]}>
       <AlgorithmPicker
@@ -131,6 +137,7 @@ export default GeneratorScreen = () => {
           onUpdate={updateColors}
           onAdd={addCard}
           onSave={saveColors}
+          onShare={shareData}
         />
       </ScrollView>
     </View>
