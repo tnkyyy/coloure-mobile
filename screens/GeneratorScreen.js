@@ -17,7 +17,7 @@ import * as Sharing from 'expo-sharing';
 import ViewShot from 'react-native-view-shot';
 import { useRef } from 'react';
 
-export default GeneratorScreen = () => {
+export default GeneratorScreen = ({ navigation }) => {
   ref = useRef();
 
   const [colors, setColors] = useState([
@@ -125,14 +125,15 @@ export default GeneratorScreen = () => {
   };
 
   const shareData = () => {
-    ref.current.capture().then((uri) => {
-      Sharing.shareAsync(uri).catch((err) => {
-        Toast.show({
-          type: 'error',
-          text1: 'Sharing failed. Do you have any colors?'
-        });
-      });
-    });
+    navigation.navigate('Share');
+    // ref.current.capture().then((uri) => {
+    //   Sharing.shareAsync(uri).catch((err) => {
+    //     Toast.show({
+    //       type: 'error',
+    //       text1: 'Sharing failed. Do you have any colors?'
+    //     });
+    //   });
+    // });
   };
 
   return (
