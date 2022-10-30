@@ -13,31 +13,36 @@ import CardUpdater from '../components/CardUpdater';
 import { ntc } from '../utilities/ntc/ntc';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AlgorithmPicker from '../components/AlgorithmPicker';
-import * as Sharing from 'expo-sharing';
+import { useSelector, useDispatch } from 'react-redux';
+import { setColors } from './colorsSlice';
 import ViewShot from 'react-native-view-shot';
 import { useRef } from 'react';
 
 export default GeneratorScreen = ({ navigation }) => {
   ref = useRef();
 
-  const [colors, setColors] = useState([
-    {
-      color: '#ffffff',
-      id: 0,
-      colorName: 'Use the shuffle button at the bottom to get more colors.'
-    },
-    {
-      color: '#ffffff',
-      id: 1,
-      colorName: 'Use the + and - buttons to add and remove cards.'
-    },
-    {
-      color: '#ffffff',
-      id: 2,
-      colorName:
-        'Use the dropdowns at the top to change the generation algorithm.'
-    }
-  ]);
+  const colors = useSelector((state) => state.colors.colorsArray);
+  console.log(colors);
+  const dispatch = useDispatch();
+
+  // const [colors, setColors] = useState([
+  //   {
+  //     color: '#ffffff',
+  //     id: 0,
+  //     colorName: 'Use the shuffle button at the bottom to get more colors.'
+  //   },
+  //   {
+  //     color: '#ffffff',
+  //     id: 1,
+  //     colorName: 'Use the + and - buttons to add and remove cards.'
+  //   },
+  //   {
+  //     color: '#ffffff',
+  //     id: 2,
+  //     colorName:
+  //       'Use the dropdowns at the top to change the generation algorithm.'
+  //   }
+  // ]);
 
   const storeData = async (key, value) => {
     try {
@@ -101,39 +106,33 @@ export default GeneratorScreen = ({ navigation }) => {
         colorName: ntc.name(newColors[i])[1]
       });
     }
-    setColors(newColorArr);
+    dispatch(setColors(newColorArr));
   };
 
   const addCard = () => {
     const algo = generateColorsHandler();
     const newColor = algo(1);
-    setColors([
-      ...colors,
-      {
-        color: newColor[0],
-        id: Math.floor(Math.random() * 10000),
-        colorName: ntc.name(newColor[0])[1]
-      }
-    ]);
+    dispatch(
+      setColors([
+        ...colors,
+        {
+          color: newColor[0],
+          id: Math.floor(Math.random() * 10000),
+          colorName: ntc.name(newColor[0])[1]
+        }
+      ])
+    );
   };
 
   const removeCardWithID = (id) => {
     const newColors = colors.filter((value) => {
       return value.id !== id;
     });
-    setColors(newColors);
+    dispatch(setColors(newColors));
   };
 
   const shareData = () => {
     navigation.navigate('Share');
-    // ref.current.capture().then((uri) => {
-    //   Sharing.shareAsync(uri).catch((err) => {
-    //     Toast.show({
-    //       type: 'error',
-    //       text1: 'Sharing failed. Do you have any colors?'
-    //     });
-    //   });
-    // });
   };
 
   return (
