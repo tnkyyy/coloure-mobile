@@ -16,12 +16,33 @@ import AlgorithmPicker from '../components/AlgorithmPicker';
 import { useSelector, useDispatch } from 'react-redux';
 import { setColors } from './colorsSlice';
 import ViewShot from 'react-native-view-shot';
+import { useRef } from 'react';
 
 export default GeneratorScreen = ({ navigation }) => {
+  ref = useRef();
 
   const colors = useSelector((state) => state.colors.colorsArray);
   console.log(colors);
   const dispatch = useDispatch();
+
+  // const [colors, setColors] = useState([
+  //   {
+  //     color: '#ffffff',
+  //     id: 0,
+  //     colorName: 'Use the shuffle button at the bottom to get more colors.'
+  //   },
+  //   {
+  //     color: '#ffffff',
+  //     id: 1,
+  //     colorName: 'Use the + and - buttons to add and remove cards.'
+  //   },
+  //   {
+  //     color: '#ffffff',
+  //     id: 2,
+  //     colorName:
+  //       'Use the dropdowns at the top to change the generation algorithm.'
+  //   }
+  // ]);
 
   const storeData = async (key, value) => {
     try {
