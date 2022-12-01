@@ -61,5 +61,18 @@ export const styles = StyleSheet.create({
   },
   generatorScrollBG: {
     backgroundColor: '#f2f2f2'
+  },
+  shareButton: {
+    height: 120,
+    width: windowWidth - 40,
+    margin: 5,
+    marginBottom: 30,
+
+    borderRadius: 50,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#888888'
   }
 });

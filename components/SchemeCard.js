@@ -1,5 +1,4 @@
 import { View, Text } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { styles } from '../styles/styles';
 import { pickTextColor } from '../utilities/colorAlgorithms';
 import ActionButton from './ActionButton';

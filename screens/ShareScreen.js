@@ -1,13 +1,18 @@
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { styles } from '../styles/styles';
 import * as Linking from 'expo-linking';
 import Anchor from '../components/Anchor';
 import { useRef } from 'react';
+import { useSelector } from 'react-redux';
+import CardDisplayer from '../components/CardDisplayer';
+import ViewShot from 'react-native-view-shot';
+import * as Sharing from 'expo-sharing';
 
 export default ShareScreen = () => {
   ref = useRef();
-
+  const colors = useSelector((state) => state.colors.colorsArray);
   const shareData = () => {
+    console.log('cool');
     ref.current.capture().then((uri) => {
       Sharing.shareAsync(uri).catch((err) => {
         Toast.show({
@@ -24,12 +29,40 @@ export default ShareScreen = () => {
         ([styles.screen, styles.generatorScreen],
         {
           flex: 1,
-          alignItems: 'center',
-          justifyContent: 'center'
+          flexDirection: 'column',
+          height: '100%',
+          width: '100%',
+          alignItems: 'center'
         })
       }
     >
-      <Anchor href={'https://dyst.dev'}>Share!!!</Anchor>
+      <View style={{ paddingRight: 10 }}>
+        <ViewShot
+          ref={ref}
+          options={{ fileName: 'coloure-scheme', format: 'png', quality: 0.9 }}
+        >
+          <CardDisplayer
+            colors={colors}
+            onRemove={() => {
+              return;
+            }}
+            isAlternate={true}
+          />
+        </ViewShot>
+      </View>
+
+      <TouchableOpacity
+        onPress={() => {
+          shareData();
+        }}
+        style={[
+          {
+            alignSelf: 'center',
+            marginTop: 'auto'
+          },
+          styles.shareButton
+        ]}
+      ></TouchableOpacity>
     </View>
   );
 };

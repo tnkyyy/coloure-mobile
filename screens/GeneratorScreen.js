@@ -15,12 +15,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import AlgorithmPicker from '../components/AlgorithmPicker';
 import { useSelector, useDispatch } from 'react-redux';
 import { setColors } from './colorsSlice';
-import ViewShot from 'react-native-view-shot';
 
 export default GeneratorScreen = ({ navigation }) => {
-
   const colors = useSelector((state) => state.colors.colorsArray);
-  console.log(colors);
   const dispatch = useDispatch();
 
   const storeData = async (key, value) => {
@@ -122,12 +119,11 @@ export default GeneratorScreen = ({ navigation }) => {
       />
 
       <ScrollView style={styles.generatorScrollBG}>
-        <ViewShot
-          ref={ref}
-          options={{ fileName: 'coloure-scheme', format: 'png', quality: 0.9 }}
-        >
-          <CardDisplayer colors={colors} onRemove={removeCardWithID} />
-        </ViewShot>
+        <CardDisplayer
+          colors={colors}
+          onRemove={removeCardWithID}
+          isAlternate={false}
+        />
         <CardUpdater
           onUpdate={updateColors}
           onAdd={addCard}
