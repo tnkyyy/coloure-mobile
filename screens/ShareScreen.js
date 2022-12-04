@@ -36,7 +36,7 @@ export default ShareScreen = () => {
         })
       }
     >
-      <View style={{ paddingRight: 10 }}>
+      <View>
         <ViewShot
           ref={ref}
           options={{ fileName: 'coloure-scheme', format: 'png', quality: 0.9 }}
@@ -48,6 +48,18 @@ export default ShareScreen = () => {
             }}
             isAlternate={true}
           />
+          <View
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: '#f2f2f2'
+            }}
+          >
+            <Text style={(styles.cardTextSub, styles.subSubtle)}>
+              Made with &lt;3 with Coloure
+            </Text>
+          </View>
         </ViewShot>
       </View>
 

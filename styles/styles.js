@@ -35,6 +35,11 @@ export const styles = StyleSheet.create({
     fontFamily: 'Inter_500Medium',
     fontSize: 15
   },
+  subSubtle: {
+    fontSize: 16,
+    paddingTop: 10,
+    color: '#808080'
+  },
   cardTextContainer: {
     padding: 20,
     flexDirection: 'column',
