@@ -31,13 +31,17 @@ export const styles = StyleSheet.create({
     fontFamily: 'Inter_500Medium',
     fontSize: 30
   },
+  cardTextMid: {
+    fontFamily: 'Inter_500Medium',
+    fontSize: 20
+  },
   cardTextSub: {
     fontFamily: 'Inter_500Medium',
     fontSize: 15
   },
   subSubtle: {
     fontSize: 16,
-    paddingTop: 10,
+    padding: 10,
     color: '#808080'
   },
   cardTextContainer: {
@@ -68,7 +72,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#f2f2f2'
   },
   shareButton: {
-    height: 120,
+    height: 90,
     width: windowWidth - 40,
     margin: 5,
     marginBottom: 30,

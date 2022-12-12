@@ -12,7 +12,6 @@ export default ShareScreen = () => {
   ref = useRef();
   const colors = useSelector((state) => state.colors.colorsArray);
   const shareData = () => {
-    console.log('cool');
     ref.current.capture().then((uri) => {
       Sharing.shareAsync(uri).catch((err) => {
         Toast.show({
@@ -32,7 +31,8 @@ export default ShareScreen = () => {
           flexDirection: 'column',
           height: '100%',
           width: '100%',
-          alignItems: 'center'
+          alignItems: 'center',
+          paddingTop: 100
         })
       }
     >
@@ -74,7 +74,9 @@ export default ShareScreen = () => {
           },
           styles.shareButton
         ]}
-      ></TouchableOpacity>
+      >
+        <Text style={styles.cardTextMid}>Share!</Text>
+      </TouchableOpacity>
     </View>
   );
 };
