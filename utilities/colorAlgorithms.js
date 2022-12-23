@@ -147,31 +147,48 @@ export const pastelRandomColors = (n) => {
 
 // Shades
 
+// Parameters:
+//    - n: Integer: the number of colors to generate
+//    - basis: Hex String: the 'basis' color to base the other shades on. Default value is a moderate random color
+
 export const shadeColors = (n, basis = moderateRandomColors(1)[0]) => {
   let result = [];
-  const originalHue = hexToHSLObj(basis)['h'];
-  console.log(originalHue);
+
+  const originalHue = hexToHSLObj(basis)['h']; // We convert the Original hex color into its three HSL components
   const originalSat = hexToHSLObj(basis)['s'];
-  console.log(originalSat);
   const originalLig = hexToHSLObj(basis)['l'];
-  console.log(originalLig);
+
   let satDistance, ligDistance;
+
+  // We find the 'mirror image' away from the color on a scale of 1 to 100
+  // which will be our destination color
+
   satDistance = originalSat > 50 ? 100 - originalSat : originalSat;
   ligDistance = originalLig > 50 ? 100 - originalLig : originalLig;
+
   const satFactor = satDistance / n / getRandomArbitrary(1, 1.5);
   const ligFactor = ligDistance / n / getRandomArbitrary(1, 1.5);
-  let acc = satFactor;
+
+  let accS = satFactor;
   let accL = ligFactor;
+
+  // We then divide the distance to the lightest/darkest color by 
+  // the number of colors needed and add all the colors up to that point.
+
   if (originalSat > 50) {
     for (let i = 0; i < n; i++) {
-      result.push(hslToHex(originalHue, originalSat - acc, originalLig - accL));
-      acc += satFactor;
+      result.push(
+        hslToHex(originalHue, originalSat - accS, originalLig - accL)
+      );
+      accS += satFactor;
       accL += ligFactor;
     }
   } else {
     for (let i = 0; i < n; i++) {
-      result.push(hslToHex(originalHue, originalSat + acc, originalLig + accL));
-      acc += satFactor;
+      result.push(
+        hslToHex(originalHue, originalSat + accS, originalLig + accL)
+      );
+      accS += satFactor;
       accL += ligFactor;
     }
   }

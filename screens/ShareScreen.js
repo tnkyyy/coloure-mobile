@@ -1,7 +1,5 @@
 import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { styles } from '../styles/styles';
-import * as Linking from 'expo-linking';
-import Anchor from '../components/Anchor';
 import { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import CardDisplayer from '../components/CardDisplayer';
@@ -9,11 +7,14 @@ import ViewShot from 'react-native-view-shot';
 import * as Sharing from 'expo-sharing';
 
 export default ShareScreen = () => {
-  ref = useRef();
-  const colors = useSelector((state) => state.colors.colorsArray);
+  ref = useRef(); // ref for ViewShot
+
+  const colors = useSelector((state) => state.colors.colorsArray); // Get the colors from the redux store
+
   const shareData = () => {
     ref.current.capture().then((uri) => {
       Sharing.shareAsync(uri).catch((err) => {
+        // If there are no colors, then we can throw a toast (popup) to the user
         Toast.show({
           type: 'error',
           text1: 'Sharing failed. Do you have any colors?'
@@ -41,6 +42,7 @@ export default ShareScreen = () => {
           ref={ref}
           options={{ fileName: 'coloure-scheme', format: 'png', quality: 0.9 }}
         >
+          {/* The ViewShot contains what we want to render and share */}
           <CardDisplayer
             colors={colors}
             onRemove={() => {
@@ -58,7 +60,8 @@ export default ShareScreen = () => {
           >
             <Text style={(styles.cardTextSub, styles.subSubtle)}>
               Made with &lt;3 with Coloure
-            </Text>
+            </Text>{' '}
+            {/* We have to use the &lt; code as <> chevrons aren't allowed in JSX */}
           </View>
         </ViewShot>
       </View>
@@ -75,6 +78,8 @@ export default ShareScreen = () => {
           styles.shareButton
         ]}
       >
+        {' '}
+        {/* TouchableOpacity means that when the user presses the area, it fades out as a form of user feedback */}
         <Text style={styles.cardTextMid}>Share!</Text>
       </TouchableOpacity>
     </View>

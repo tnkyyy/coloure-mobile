@@ -20,22 +20,30 @@ export default GeneratorScreen = ({ navigation }) => {
   const colors = useSelector((state) => state.colors.colorsArray);
   const dispatch = useDispatch();
 
+  // Reusable function to store data with a key and value
   const storeData = async (key, value) => {
     try {
       await AsyncStorage.setItem(key, value);
     } catch (e) {
-      console.log(e);
+      console.log(e); // Log if we get an error
     }
   };
 
   const saveColors = async () => {
-    let oldSchemes = await AsyncStorage.getItem('schemes');
-    let newId = Math.floor(Math.random() * 10000);
+    let oldSchemes = await AsyncStorage.getItem('schemes'); // Get the old saved schemes out of storage
+    let newId = Math.floor(Math.random() * 10000); // We need to id every saved scheme to uniquely identify it
+
+    // Get the new scheme as an object
+
     const colorsObject = {
       items: colors,
       customName: `Saved scheme ${newId}`,
       id: newId
     };
+
+    // If there are no saved schemes from before, add it as the first
+    // Othewise, just append it
+
     let colorsJSON;
     if (oldSchemes == undefined) {
       colorsJSON = JSON.stringify([colorsObject]);
@@ -43,6 +51,7 @@ export default GeneratorScreen = ({ navigation }) => {
       oldSchemes = JSON.parse(oldSchemes);
       colorsJSON = JSON.stringify([...oldSchemes, colorsObject]);
     }
+
     await storeData('schemes', colorsJSON);
   };
 
